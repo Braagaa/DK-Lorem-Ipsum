@@ -32,6 +32,27 @@ footer {
     margin: 0 auto;
 }
 
+.display::before {
+    content: "";
+    position: absolute;
+    border: 4px none #FEF200;
+    border-radius: 25px;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: url(../img/palmtrees.jpg);
+    opacity: 0.25;
+}
+
+.display {
+    z-index: 1;
+    padding: 3em;
+    font-size: 1.2em;
+    color: #FEF200;
+    position: relative;
+}
+
 /******FORMS******/
 .option {
     position: relative;
