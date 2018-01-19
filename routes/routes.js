@@ -1,11 +1,18 @@
 const {parse} = require('querystring');
 const {renderHTML, renderStatic} = require('./renderer');
 const generate = require('../js/generator');
+const {transform, isNumberDefaultTo} = require('../js/validate');
 
 const types = {
     html: {'Content-Type': 'text/html'},
     '.css': {'Content-Type': 'text/css'},
     '.ico': {'Content-Type': 'image/x-icon'}
+};
+
+const minMaxWordCounts = {
+    words: [1, 10000],
+    sentences: [1, 2500],
+    paragraphs: [1, 150]
 };
 
 const findType = str => type => str.toLowerCase().endsWith(type);
@@ -33,7 +40,9 @@ const loadStatic = function({url}, res) {
 const generator = function(req, res) {
     if (req.url === '/') {
         req.on('data', data => {
-            console.log(parse(data.toString()));
+            const test = [parse(data.toString())]
+                .map(transform({amount: isNumberDefaultTo(1, 150, 5, 150)}));
+            console.log(test);
         });
     }
 }
