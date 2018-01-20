@@ -8,8 +8,13 @@ const list =
     'barrel', 'watermelon', 'TNT', 'kremling'
 ];
 
+const [sMin, sMax] = [3, 15];
+const [pMin, pMax] = [3, 8];
+
 const range = function(from, to, arr = []) {
-    return arr.length === to ? arr : range(from + 1, to, [...arr, from]);
+    let i = -1;
+    while(i++ !== to - 1) arr[i] = i + 1;
+    return arr;
 }
 
 const randomNumber = function(min, max) {
@@ -20,6 +25,16 @@ const randomNumber = function(min, max) {
     }
 }
 
+const group = function(min, max) {
+    return function(a, i, arr, b = [], rNum = randomNumber(min,max)()) {
+        return a.length === 0 ? 
+            b : group(min, max)(a, i, arr, [...b, a.splice(0, rNum)]);
+    }
+}
+
+const join = str => arr => arr.join(str);
+const unWrapR = (a, v, i, l) => l[0];
+const wrapR = (a, v, i, l) => [l];
 const pickList = num => list[num];
 const endSentence = str => str + '.';
 const capitalize = str => 
@@ -45,7 +60,33 @@ const createSentences = function(from, to) {
             .join(' ');
     }
 }
-const threeTofifteenWords = createSentences(3, 15);
+const threeTofifteenWords = createSentences(sMin, sMax);
+
+const createFormatedSentences = function(num) {
+    return threeTofifteenWords(num)
+        .split('. ')
+        .reduce(wrapR, [])
+        .map(group(pMin, pMax))
+        .reduce(unWrapR, [])
+        .map(join('. '))
+        .join('\n\n')
+}
+
+const createFormatedWords = function(num) {
+    return getAllWords(num)
+        .split(' ')
+        .reduce(wrapR, [])
+        .map(group(sMin, sMax))
+        .reduce(unWrapR, [])
+        .map(join(' '))
+        .map(capitalize)
+        .map(endSentence)
+        .reduce(wrapR, [])
+        .map(group(pMin, pMax))
+        .reduce(unWrapR, [])
+        .map(join(' '))
+        .join('\n\n')
+}
 
 const createParagraps = function(from, to) {
     return function(numParagraps) {
@@ -55,8 +96,8 @@ const createParagraps = function(from, to) {
             .join('\n\n');
     }
 }
-const threeToFiveSentences = createParagraps(3, 5);
+const threeToFiveSentences = createParagraps(pMin, pMax);
 
-module.exports.createWords = getAllWords;
-module.exports.createSentences = threeTofifteenWords;
+module.exports.createWords = createFormatedWords;
+module.exports.createSentences = createFormatedSentences;
 module.exports.createParagraps = threeToFiveSentences;
