@@ -15,12 +15,12 @@ const not = f => v => !f(v);
 const greaterThan = greater => num => num > greater;
 const lessThan = less => num => num < less;
 
-const isNumberDefaultTo = (less, greater, minDefault, maxDefault) => num => 
+const isNumberDefaultTo = (minDefault, maxDefault, less, greater) => num => 
     [num].map(parseInt)
         .filter(not(isNaN))
         .filter(not(lessThan(less)))
-        .reduce(returnArray, [minDefault])
+        .reduce(returnArray, [less])
         .filter(not(greaterThan(greater)))
-        .reduce(returnValue, maxDefault);
+        .reduce(returnValue, greater);
 
 module.exports = {transform, isNumberDefaultTo};

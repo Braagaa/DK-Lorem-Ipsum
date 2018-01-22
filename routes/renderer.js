@@ -24,7 +24,9 @@ const renderHTML = function(name, values, res) {
 }
 
 const renderStatic = function(url, res) {
-    return readFile(`${__dirname}/../${url}`)
+    return url.replace(/.+(\/.+\/.+)/, (str, p) => p)
+        .split()
+        .reduce((str, url) => readFile(`${__dirname}/../${url}`), '')
         .then(write(res))
         .catch(error);
 }

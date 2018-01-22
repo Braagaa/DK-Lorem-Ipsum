@@ -1,10 +1,10 @@
 const {createServer} = require('http');
-const {home, loadStatic, generator} = require('./routes/routes');
+const {home, loadStatic, redirect, generate} = require('./routes/routes');
 
 const port = 3000;
 const methodMiddleware = {
-    GET: [home, loadStatic],
-    POST: [generator]
+    GET: [home, loadStatic, generate],
+    POST: [redirect]
 }
 
 createServer((req, res) => {
