@@ -11,6 +11,15 @@ html {
     font-family: 'Joti One', cursive;
 }
 
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 .title {
     font-size: 3em;
     text-align: center;
@@ -25,11 +34,13 @@ h2 {
 footer {
     text-align: center;
     font-size: 2em;
+    margin-bottom: 1em;
 }
 
 .main {
     max-width: 800px;
     margin: 0 auto;
+    flex: 1 0 auto;
 }
 
 .display::before {
@@ -46,6 +57,7 @@ footer {
 }
 
 .display {
+    margin-bottom: 3em;
     z-index: 1;
     padding: 3em;
     font-size: 1.2em;
