@@ -1,5 +1,5 @@
 const {parse} = require('querystring');
-const {renderHTML, renderStatic} = require('./renderer');
+const {renderHTML, renderStatic, renderHTMLItems} = require('./renderer');
 const {createWords, createSentences, createParagraps} = require('../js/generator');
 const {transform, isNumberDefaultTo} = require('../js/validate');
 
@@ -63,11 +63,11 @@ const generate = function({url}, res) {
 
         stream
             .map(transform({amount: isNumberDefaultTo(min, max, 5, max)}))
-            .map(({amount}) => method(amount))
+            .map(({amount}) => method(amount).split('\n\n'))
             .forEach(async function(lipsum) {
                 res.writeHead(200, types.html);
                 await renderHTML('header', {title}, res);
-                await renderHTML('display', {lipsum}, res);
+                await renderHTMLItems('display', {element: 'p', list: lipsum, replace: 'lipsum'}, res);
                 await renderHTML('footer', {}, res);
                 res.end();
             });

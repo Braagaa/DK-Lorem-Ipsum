@@ -8,8 +8,6 @@ const methodMiddleware = {
 }
 
 createServer((req, res) => {
-    console.log(req.url);
-
     methodMiddleware[req.method]
         .forEach(fn => fn(req,res));
 }).listen(port);
