@@ -5,7 +5,6 @@
 }
 
 html {
-    /*background: url(../img/dk.jpg) center/70% no-repeat #FE001A;*/
     color: #FEF200;
     background-color: #FE001A;
     font-family: 'Joti One', cursive;
@@ -57,7 +56,7 @@ footer {
 }
 
 .display {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     z-index: 1;
     padding: 3em;
     font-size: 1.2em;
@@ -80,18 +79,6 @@ footer {
     padding-left: 2.2em;
     cursor: pointer;
 }
-/*
-.option label::before {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    left: 0;
-    top: 10px;
-    position: absolute;
-    border: 4px solid coral;
-    content: '';
-}
-*/
 
 .banana {
     width: 35px;
@@ -153,4 +140,32 @@ footer {
     background-color: #FEF200;
     border-radius: 10px;
     cursor: pointer;
+}
+
+/******TOTAL SECTIONS******/
+h3 {
+    text-align: center;
+}
+
+.totals,
+.total{
+    display: flex;
+}
+
+.totals {
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto 3em;
+}
+
+.totals span {
+    display: block;
+}
+
+.total span:first-child {
+    width: 100px;
+}
+
+.count {
+    margin: auto;
 }

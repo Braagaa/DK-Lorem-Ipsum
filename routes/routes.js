@@ -14,8 +14,8 @@ const types = {
 
 const counts = {
     words: {min: 1, max: 10000, method: createWords},
-    sentences: {min: 1, max: 2500, method: createSentences},
-    paragraphs: {min: 1, max: 150, method: createParagraps}
+    sentences: {min: 1, max: 1200, method: createSentences},
+    paragraphs: {min: 1, max: 210, method: createParagraps}
 }
 
 const findType = str => type => str.toLowerCase().endsWith(type);
@@ -63,11 +63,21 @@ const generate = function({url}, res) {
 
         stream
             .map(transform({amount: isNumberDefaultTo(min, max, 5, max)}))
-            .map(({amount}) => method(amount).split('\n\n'))
-            .forEach(async function(lipsum) {
+            .map(({amount}) => method(amount))
+            .map(lipsum => {
+                return {
+                    lipsum: lipsum.split('\n\n'),
+                    countW: lipsum.match(/[\w]+/g).length,
+                    countS: lipsum.match(/[\w ]+/g).length,
+                    countP: lipsum.split('\n\n').length
+                };
+            })
+            .forEach(async function({lipsum, countW, countS, countP}) {
+                console.log(countW, countS, countP);
                 res.writeHead(200, types.html);
                 await renderHTML('header', {title}, res);
                 await renderHTMLItems('display', {element: 'p', list: lipsum, replace: 'lipsum'}, res);
+                await renderHTML('totals', {countW, countS, countP}, res);
                 await renderHTML('footer', {}, res);
                 res.end();
             });
