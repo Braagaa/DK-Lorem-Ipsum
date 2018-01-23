@@ -36,7 +36,7 @@ const join = str => arr => arr.join(str);
 const unWrapR = (a, v, i, l) => l[0];
 const wrapR = (a, v, i, l) => [l];
 const pickList = num => list[num];
-const endSentence = str => str + '.';
+const endSentence = str => str.endsWith('.') ? str : str + '.';
 const capitalize = str => 
     str.charAt(0).toUpperCase() + str.slice(1, str.length);
 
@@ -69,6 +69,7 @@ const createFormatedSentences = function(num) {
         .map(group(pMin, pMax))
         .reduce(unWrapR, [])
         .map(join('. '))
+        .map(endSentence)
         .join('\n\n')
 }
 
