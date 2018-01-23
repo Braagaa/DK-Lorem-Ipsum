@@ -18,7 +18,7 @@ const lessThan = less => num => num < less;
 const isNumberDefaultTo = (minDefault, maxDefault, less, greater) => num => 
     [num].map(parseInt)
         .filter(not(isNaN))
-        .filter(not(lessThan(less)))
+        .filter(not(lessThan(minDefault)))
         .reduce(returnArray, [less])
         .filter(not(greaterThan(greater)))
         .reduce(returnValue, greater);
