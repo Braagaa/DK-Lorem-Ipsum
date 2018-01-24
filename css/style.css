@@ -72,9 +72,20 @@ footer {
     margin: 0 auto;
 }
 
+.option label,
+.banana {
+    transition: opacity .5s ease-out;
+    opacity: 0.5;
+}
+
+.option:first-child label,
+.option:first-child .banana {
+    opacity: 1;
+}
+
 .option label {
     display: inline-block;
-    opacity: 0.5;
+    left: 0;
     font-size: 1.5em;
     padding-left: 2.2em;
     cursor: pointer;
@@ -85,7 +96,6 @@ footer {
     height: 35px;
     position: absolute;
     left: 0;
-    opacity: 0.5;
 }
 
 .banana-body {
@@ -168,4 +178,32 @@ h3 {
 
 .count {
     margin: auto;
+}
+
+/******ANIMATIONS******/
+
+@keyframes click-banana {
+    from {
+        transform: scale(1.0);
+    }
+
+    25% {
+        transform: scale(0.8);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    75% {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1.0);
+    }
+}
+
+.click-banana {
+    animation: 0.5s cubic-bezier(1,-0.08,.88,.88) click-banana;
 }
