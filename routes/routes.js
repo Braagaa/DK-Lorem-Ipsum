@@ -8,8 +8,9 @@ const title = 'DK Lipsum';
 const types = {
     html: {'Content-Type': 'text/html'},
     '.css': {'Content-Type': 'text/css'},
+    '.js': {'Content-Type': 'application/javascript'},
     '.ico': {'Content-Type': 'image/x-icon'},
-    '.jpg': {'Content-Type': 'image/jpeg'}
+    '.jpg': {'Content-Type': 'image/jpeg'},
 };
 
 const counts = {
@@ -26,6 +27,8 @@ const home = async function({url}, res) {
         await renderHTML('header', {title}, res);
         await renderHTML('generator', {}, res);
         await renderHTML('footer', {}, res);
+        await renderHTML('script', {script: 'js/client.js'}, res);
+        await renderHTML('close', {}, res);
         res.end();
     } 
 }
