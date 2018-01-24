@@ -3,7 +3,7 @@ const {renderHTML, renderStatic, renderHTMLItems} = require('./renderer');
 const {createWords, createSentences, createParagraps} = require('../js/generator');
 const {transform, isNumberDefaultTo} = require('../js/validate');
 
-const title = 'DK Lipsum';
+const title = 'DK Ipsum';
 
 const types = {
     html: {'Content-Type': 'text/html'},
@@ -76,7 +76,6 @@ const generate = function({url}, res) {
                 };
             })
             .forEach(async function({lipsum, countW, countS, countP}) {
-                console.log(countW, countS, countP);
                 res.writeHead(200, types.html);
                 await renderHTML('header', {title}, res);
                 await renderHTMLItems('display', {element: 'p', list: lipsum, replace: 'lipsum'}, res);
