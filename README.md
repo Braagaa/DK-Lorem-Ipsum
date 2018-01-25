@@ -1,6 +1,6 @@
 ## DK Lorem Ipsum Generator
 
-This is a basic Donkey Kong Lorem Ipsum text generator made from Node.js. Able to generte text of popular names and items from the Donkey Kong series.
+This is a basic Donkey Kong Lorem Ipsum text generator made from Node.js. Able to generate text of popular names and items from the Donkey Kong series.
 
 This is pure Node.js application with no libraries or modules used.
 
