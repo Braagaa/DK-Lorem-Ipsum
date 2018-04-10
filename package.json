@@ -1,0 +1,27 @@
+{
+  "name": "dkipsum",
+  "version": "1.0.0",
+  "description": "A Donkey Kong Lorem Ipsum",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": "8.10.0",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Braagaa/DK-Lorem-Ipsum.git"
+  },
+  "keywords": [
+    "Donkey",
+    "Kong",
+    "Lorem",
+    "Ipsum"
+  ],
+  "author": "Michael Braga",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Braagaa/DK-Lorem-Ipsum/issues"
+  },
+  "homepage": "https://github.com/Braagaa/DK-Lorem-Ipsum#readme"
+}
